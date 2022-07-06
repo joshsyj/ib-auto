@@ -3,8 +3,8 @@ auto.waitFor()
 toast('执行脚本')
 
 var appName = 'iBox';
-var production = '蔷薇';
-var tagPrice = '2900';
+var production = '托塔';
+var tagPrice = '21000';
 var flag = 0
 var wait = 2000
 launchApp(appName)
@@ -81,6 +81,17 @@ function openPriceList() {
                 className('android.widget.FrameLayout').depth(1).waitFor()
 
                 id('tv_pay').findOne().click()
+
+                sleep(2000)
+
+                if (id('tv_title').findOne()) {
+
+                    back()
+
+                    sleep(2000)
+
+                    openPriceList()
+                }
 
                 return
 
