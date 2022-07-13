@@ -3,35 +3,41 @@ auto.waitFor()
 toast('执行脚本')
 
 var appName = 'iBox';
-var production = '托塔';
-var tagPrice = '21000';
+var production = '至尊宝';
+var tagPrice = '32000';
 var flag = 0
 var wait = 2000
-launchApp(appName)
+var step2 = 1
 
-sleep(2000)
+if (!step2) {
 
-var search = id("home_top_search_view")
+    launchApp(appName)
 
-search.click()
+    sleep(2000)
 
-var search2 = id("et_keywords_input")
+    var search = id("home_top_search_view")
 
-search2.setText(production)
+    search.click()
 
-var button = id("tv_operate_btn")
+    var search2 = id("et_keywords_input")
 
-sleep(1000)
+    search2.setText(production)
 
-button.click()
+    var button = id("tv_operate_btn")
 
-var content = id("fl_search_list_viewpager")
+    sleep(1000)
 
-content.waitFor()
+    button.click()
 
-var item = id("rl_list_item_root_view").findOne()
+    var content = id("fl_search_list_viewpager")
 
-item.click()
+    content.waitFor()
+
+    var item = id("rl_list_item_root_view").findOne()
+
+    item.click()
+
+}
 
 function openPriceList() {
 
@@ -72,28 +78,42 @@ function openPriceList() {
 
                 sleep(600)
 
-                className('android.widget.Button').desc('立即购买').findOne().click()
+                let finded = className('android.widget.Button').untilFind().filter((item) => item.contentDescription)[0]
 
-                id('tv_title').waitFor()
+                console.log(finded.contentDescription)
 
-                id('btn_oprate').findOne().click()
+                if (finded.contentDescription == '立即购买') {
 
-                className('android.widget.FrameLayout').depth(1).waitFor()
+                    // className('android.widget.Button').desc('立即购买').findOne().click()
 
-                id('tv_pay').findOne().click()
+                    finded.click()
 
-                sleep(2000)
+                    id('tv_title').waitFor()
 
-                if (id('tv_title').findOne()) {
+                    id("tv_pay_type").className("android.widget.TextView").text("银行卡").findOne().parent().click()
 
-                    back()
+                    sleep(200)
+
+                    id('btn_oprate').findOne().click()
+
+                    className('android.widget.FrameLayout').depth(1).waitFor()
+
+                    id('tv_pay').findOne().click()
 
                     sleep(2000)
 
-                    openPriceList()
-                }
+                    if (id('tv_title').findOne()) {
 
-                return
+                        back()
+
+                        sleep(2000)
+
+                        openPriceList()
+                    }
+
+                    return
+
+                }
 
                 break
 
@@ -102,7 +122,7 @@ function openPriceList() {
         }
     }
 
-    sleep(600)
+    sleep(100)
 
     //关闭价格弹窗
     className("android.widget.Button").findOne().click()
