@@ -3,8 +3,8 @@ auto.waitFor()
 toast('执行脚本')
 
 var appName = 'iBox';
-var production = '至尊宝';
-var tagPrice = '32000';
+var production = '鲸跃';
+var tagPrice = 6668
 var flag = 0
 var wait = 2000
 var step2 = 1
@@ -113,6 +113,12 @@ function openPriceList() {
 
                     return
 
+                }
+                else {
+
+                    openPriceList()
+
+                    return
                 }
 
                 break
