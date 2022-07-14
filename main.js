@@ -3,8 +3,8 @@ auto.waitFor()
 toast('执行脚本')
 
 var appName = 'iBox';
-var production = '鲸跃';
-var tagPrice = 7100
+var production = '七星石';
+var tagPrice = 3560
 var flag = 0
 var wait = 2000
 var step2 = 1
@@ -90,16 +90,39 @@ function openPriceList() {
 
                     id('tv_title').waitFor()
 
-                    if (id("tv_pay_type").className("android.widget.TextView").text("银行卡").findOne().parent().exists()) {
+                    sleep(100)
+
+                    let qianbao = id('tv_pay_type').className('android.widget.TextView').untilFind()
+
+                    // console.log(qianbao)
+
+                    console.log(qianbao.length)
+
+
+
+                    if (id("tv_pay_type").className("android.widget.TextView").text("银行卡").exists()) {
+
+                        console.log('银行卡')
 
                         id("tv_pay_type").className("android.widget.TextView").text("银行卡").findOne().parent().click()
-
                     }
-                    else if (id("tv_pay_type").className("android.widget.TextView").text("钱包B").findOne().parent().exists()) {
+                    else if (id("tv_pay_type").className("android.widget.TextView").text("钱包B").exists()) {
+
+                        console.log('钱包B')
 
                         id("tv_pay_type").className("android.widget.TextView").text("钱包B").findOne().parent().click()
-
                     }
+
+                    // if (id("tv_pay_type").className("android.widget.TextView").text("银行卡").findOne().parent().exists()) {
+
+                    //     id("tv_pay_type").className("android.widget.TextView").text("银行卡").findOne().parent().click()
+
+                    // }
+                    // else if (id("tv_pay_type").className("android.widget.TextView").text("钱包B").findOne().parent().exists()) {
+
+                    //     id("tv_pay_type").className("android.widget.TextView").text("钱包B").findOne().parent().click()
+
+                    // }
 
                     sleep(200)
 
