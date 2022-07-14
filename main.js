@@ -4,7 +4,7 @@ toast('执行脚本')
 
 var appName = 'iBox';
 var production = '鲸跃';
-var tagPrice = 6668
+var tagPrice = 7100
 var flag = 0
 var wait = 2000
 var step2 = 1
@@ -90,7 +90,16 @@ function openPriceList() {
 
                     id('tv_title').waitFor()
 
-                    id("tv_pay_type").className("android.widget.TextView").text("银行卡").findOne().parent().click()
+                    if (id("tv_pay_type").className("android.widget.TextView").text("银行卡").findOne().parent().exists()) {
+
+                        id("tv_pay_type").className("android.widget.TextView").text("银行卡").findOne().parent().click()
+
+                    }
+                    else if (id("tv_pay_type").className("android.widget.TextView").text("钱包B").findOne().parent().exists()) {
+
+                        id("tv_pay_type").className("android.widget.TextView").text("钱包B").findOne().parent().click()
+
+                    }
 
                     sleep(200)
 
